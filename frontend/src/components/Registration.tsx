@@ -1,25 +1,26 @@
 import { useState, type FormEvent } from "react"
-import Input from './common/Input';
+import Input from "./common/Input";
 import { Link } from "react-router-dom";
 
-const Login = () => {
+const Registration = () => {
     const [username, setUsername] = useState("");
+    const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
     const handleSubmit = (e: FormEvent) => {
         e.preventDefault();
-        console.log(username, password);
+        console.log(email, username, password);
         setUsername("");
         setPassword("");
+        setEmail("");
     }
-
     return (
         <div>
             <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center p-4">
                 <div className="bg-white rounded-2xl shadow-xl w-full max-w-md overflow-hidden">
                     <div className="bg-gradient-to-r from-blue-600 to-indigo-700 p-6 text-white">
                         <h2 className="font-bold text-2xl text-center">Welcome to TMS</h2>
-                        <p className="text-blue-100 text-center mt-2">Sign in to your account</p>
+                        <p className="text-blue-100 text-center mt-2">Create an account</p>
                     </div>
                     <form onSubmit={handleSubmit} className="p-8 space-y-6">
                         <Input
@@ -28,6 +29,14 @@ const Login = () => {
                             inputType="text"
                             inputValue={username}
                             inputOnChange={(e) => setUsername(e.target.value)}
+                            inputClassName="w-full"
+                        />
+                        <Input
+                            inputId="email"
+                            labelName="Email"
+                            inputType="email"
+                            inputValue={email}
+                            inputOnChange={(e) => setEmail(e.target.value)}
                             inputClassName="w-full"
                         />
                         <Input
@@ -42,10 +51,10 @@ const Login = () => {
                             type="submit"
                             className="w-full bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-3 px-4 rounded-xl font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
                         >
-                            Sign In
+                            Sign Up
                         </button>
                         <div className="m-0 text-center text-gray-500 font-semibold">
-                            <p>Not have an account? <Link to="/Register" className="text-indigo-400 transition-all delay-75 hover:text-indigo-700">Register</Link></p>
+                            <p>already register? <Link to="/Login" className="text-indigo-500 transition-all delay-75 hover:text-indigo-700" >Login</Link></p>
                         </div>
                     </form>
                 </div>
@@ -54,4 +63,4 @@ const Login = () => {
     )
 }
 
-export default Login
+export default Registration

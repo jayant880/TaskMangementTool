@@ -1,9 +1,10 @@
-import Login from "./components/Login"
+// import Login from "./components/Login"
+import { Outlet } from "react-router-dom"
 
 const App = () => {
   return (
     <div>
-      <Login />
+      <Outlet />
     </div>
   )
 }
