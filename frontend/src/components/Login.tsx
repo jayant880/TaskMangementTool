@@ -1,17 +1,27 @@
-import { useState, type FormEvent } from "react"
+import { useEffect, useState, type FormEvent } from "react"
 import Input from './common/Input';
 import { Link } from "react-router-dom";
 
 const Login = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+    const [disable, setDisable] = useState(true);
 
     const handleSubmit = (e: FormEvent) => {
         e.preventDefault();
+
+        // here have to check if password and username correct in the backend
+
+        if (!username || !password) return;
         console.log(username, password);
         setUsername("");
         setPassword("");
     }
+
+    useEffect(() => {
+        if (!username || !password) setDisable(true)
+        else setDisable(false);
+    }, [username, password])
 
     return (
         <div>
@@ -40,7 +50,8 @@ const Login = () => {
                         />
                         <button
                             type="submit"
-                            className="w-full bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-3 px-4 rounded-xl font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                            className="w-full bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-3 px-4 rounded-xl font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:shadow-none disabled:transform-none"
+                            disabled={disable}
                         >
                             Sign In
                         </button>

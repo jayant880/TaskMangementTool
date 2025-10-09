@@ -9,6 +9,7 @@ const Input: FC<inputInterface> = ({
     inputOnChange,
     inputClassName,
     labelClassName,
+    errors
 }) => {
     return (
         <div className="flex flex-col gap-2">
@@ -25,7 +26,12 @@ const Input: FC<inputInterface> = ({
                 onChange={(e) => inputOnChange(e)}
                 className={`px-4 py-3 border border-gray-300 rounded-lg focus::outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 ${inputClassName}`}
             />
-        </div>
+            {errors &&
+                errors.map((error, index) => {
+                    return <li key={index} className="text-red-500 list-none">{error}</li>
+                })
+            }
+        </div >
     )
 }
 

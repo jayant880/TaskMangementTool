@@ -8,4 +8,7 @@ export interface inputInterface {
   inputOnChange: (e: ChangeEvent<HTMLInputElement>) => void;
   labelClassName?: string;
   inputClassName?: string;
+  onBlur?: () => void;
+  required?: boolean;
+  errors?: string[];
 }
